@@ -30,7 +30,28 @@ class _HomepageState extends State<Homepage> {
       "name": "Breakfast",
       "image": 'images/1.png',
       "date": "22 jan 2025",
-      'montant': 1000,
+      'montant': 100000,
+      "heure": "20h 19",
+    },
+    {
+      "name": "Breakfast",
+      "image": 'images/1.png',
+      "date": "22 jan 2025",
+      "montant": 7500,
+      "heure": "20h 19",
+    },
+    {
+      "name": "Breakfast",
+      "image": 'images/1.png',
+      "date": "22 jan 2025",
+      "montant": 20200,
+      "heure": "20h 19",
+    },
+    {
+      "name": "Breakfast",
+      "image": 'images/1.png',
+      "date": "22 jan 2025",
+      "montant": 20,
       "heure": "20h 19",
     },
     {
@@ -44,7 +65,7 @@ class _HomepageState extends State<Homepage> {
       "name": "Breakfast",
       "image": 'images/1.png',
       "date": "22 jan 2025",
-      "montant": 1000,
+      "montant": 0,
       "heure": "20h 19",
     },
     {
@@ -58,28 +79,7 @@ class _HomepageState extends State<Homepage> {
       "name": "Breakfast",
       "image": 'images/1.png',
       "date": "22 jan 2025",
-      "montant": 1000,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 1000,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 1000,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 1000,
+      "montant": 0,
       "heure": "20h 19",
     },
   ];
@@ -105,74 +105,76 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBar(title: Text("fredi")),
       body: Padding(
-        
         padding: EdgeInsets.all(10),
         child: Column(
-          
           children: [
-            Card(
-              elevation: 15,
-              color: Colors.blue,
-              child: Padding(
-                padding: EdgeInsets.all(16),
+            SizedBox(
+              width: screenWidth * 0.95,
+              height: screenHeight * 0.35,
+              child: Card(
+                elevation: 15,
+                color: Colors.blue,
+                child: Padding(
+                  padding: EdgeInsets.all(16),
 
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Fredi account",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "Arian zesan",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 30),
-                    Center(
-                      child: Text(
-                        '$_solde \$',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 24,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Fredi account",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            "Arian zesan",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      Center(
+                        child: Text(
+                          '$_solde \$',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(),
-                    Center(
-                      child: Text(
-                        "Total balance",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                          fontSize: 10,
+                      SizedBox(),
+                      Center(
+                        child: Text(
+                          "Total balance",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Added cart 05",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "Ac no 2234521",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Added cart 05",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            "Ac no 2234521",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
 
-                    // ElevatedButton(
-                    //   onPressed: () {},
-                    //   child: Text("tranferer de largent"),
-                    // ),
-                  ],
+                      // ElevatedButton(
+                      //   onPressed: () {},
+                      //   child: Text("tranferer de largent"),
+                      // ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -194,13 +196,13 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     color: Colors.black.withAlpha(50),
-                    width: screenWidth * 0.2,
+                    width: screenWidth * 0.25,
                     height: screenHeight * 0.05,
                     child: Row(
                       children: [Icon(Icons.arrow_downward), Text("send")],
@@ -216,7 +218,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   Container(
                     color: Colors.black.withAlpha(50),
-                    width: screenWidth * 0.2,
+                    width: screenWidth * 0.3,
                     height: screenHeight * 0.05,
                     child: Row(
                       children: [
@@ -259,10 +261,9 @@ class _HomepageState extends State<Homepage> {
                       Column(
                         children: [
                           Row(
-                            
                             children: [
                               CircleAvatar(child: Image.asset('image/1.png')),
-                              SizedBox(width: 20,),
+                              SizedBox(width: 20),
                               Column(
                                 children: [
                                   Text(
