@@ -1,5 +1,7 @@
 import 'package:u_credit_card/u_credit_card.dart';
 import 'package:flutter/material.dart';
+import 'package:apt2/pages/graphique.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +30,12 @@ class WalletPage extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(title: const Text("Wallets")),
+      appBar: AppBar(
+        title: const Text("Wallets"),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.add_circle_outline)),
+        ],
+      ),
       body: ListView(
         padding: EdgeInsets.all(20),
         children: [
@@ -54,21 +61,25 @@ class WalletPage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Row(children: [Text("Total spending")]),
-          SizedBox(height: 10,),
+          SizedBox(height: 10),
           Container(
-                width: screenWidth * 1,
-                height: screenHeight * 0.1,
-                color: Colors.grey.withAlpha(50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Day"),
-                    Text("Week"),
-                    Text("Month"),
-                    Text("Custom rang"),
-                  ],
-                ),
-              ),
+            width: screenWidth * 1,
+            height: screenHeight * 0.1,
+            color: Colors.grey.withAlpha(50),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Day"),
+                Text("Week"),
+                Text("Month"),
+                Text("Custom rang"),
+              ],
+            ),
+          ),
+
+LineChartSample2(),
+   
+
         ],
       ),
     );
