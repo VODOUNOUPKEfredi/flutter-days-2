@@ -47,4 +47,6 @@ class DbHelper {
       return null; // Utilisateur non trouvé
     }
   }
+
+  getTransactions() {}
 }

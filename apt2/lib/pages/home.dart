@@ -441,8 +441,11 @@ class _HomepageState extends State<Homepage> {
 
             //   // TransactionList(),
             // ),
-
-            TransactionList(),
+Expanded(child:
+SingleChildScrollView(
+  child:  TransactionList(),
+))
+            
           ],
         ),
       ),
