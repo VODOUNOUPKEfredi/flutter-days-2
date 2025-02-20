@@ -254,6 +254,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -284,6 +285,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -314,6 +316,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -344,6 +347,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -374,6 +378,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
