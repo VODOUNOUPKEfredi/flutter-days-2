@@ -1,11 +1,13 @@
 //import 'dart:ffi';
-import 'dart:convert';
+//import 'dart:convert';
 //import 'package:apt2/pages/home.dart';
+import 'package:apt2/pages/envoi.dart';
 import 'package:flutter/material.dart';
-
-//
-
+//import 'package:apt2/pages/provider/transaction_provider.dart';
+//import 'package:apt2/pages/models/transaction.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:apt2/pages/widget/transaction_list.dart';
 
 void main() {
   runApp(
@@ -27,73 +29,16 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final List<Map<String, dynamic>> transactions = [
-    {
-      "name": "Breakfast",
-      "image": 'assets/images/1.png',
-      "date": "22 jan 2025",
-      'montant': 100000,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 7500,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 20200,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 20,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 1000,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 25,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 1000,
-      "heure": "20h 19",
-    },
-    {
-      "name": "Breakfast",
-      "image": 'images/1.png',
-      "date": "22 jan 2025",
-      "montant": 10,
-      "heure": "20h 19",
-    },
-  ];
-  int? selIndex = 0;
   double _solde = 10000;
+
+  get provider => null;
+
+  get selectedFilter => null;
 
   void iniState() {
     super.initState();
     _chargerSolde();
   }
-
-  
 
   Future<void> _chargerSolde() async {
     final prefs = await SharedPreferences.getInstance();
@@ -107,11 +52,38 @@ class _HomepageState extends State<Homepage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(title: Text("fredi")),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('images/1.png'),
+            ),
+            SizedBox(width: 10),
+            Text(
+              "Hello fredi !",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: Padding(
-        
         padding: EdgeInsets.all(10),
+
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               width: screenWidth * 0.95,
@@ -200,127 +172,244 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    color: Colors.black.withAlpha(50),
-                    width: screenWidth * 0.25,
-                    height: screenHeight * 0.05,
-                    child: Row(
-                      children: [Icon(Icons.arrow_downward), Text("send")],
-                    ),
-                  ),
-                  Container(
-                    color: Colors.black.withAlpha(50),
-                    width: screenWidth * 0.3,
-                    height: screenHeight * 0.05,
-                    child: Row(
-                      children: [Icon(Icons.arrow_downward), Text("Receive")],
-                    ),
-                  ),
-                  Container(
-                    color: Colors.black.withAlpha(50),
-                    width: screenWidth * 0.3,
-                    height: screenHeight * 0.05,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.card_giftcard_sharp,
-                          color: Colors.black.withAlpha(100),
-                        ),
-                        Text("Rewards"),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EnvoiPage()),
+                    );
+                  },
+                  child: Text("Send"),
+                ),
+                ElevatedButton(onPressed: () {}, child: Text("Receive")),
+                ElevatedButton(onPressed: () {}, child: Text("Rewards")),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Recent activity",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
-                   DropdownMenu(dropdownMenuEntries: [
-                    
-                    DropdownMenuEntry(value: "all", label: "All"),
-                    DropdownMenuEntry(value: "a-z", label: "A-Z"),
-                  ],
-                  hintText: "Sort by",
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: transactions.length,
+            SizedBox(height: 20),
 
-                itemBuilder: (context, index) {
-                  var transaction = transactions[index];
-                  return Row(
-                    
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(height: 10,),
-                          Row(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Recent activity",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                DropdownButton<String>(
+                  value: selectedFilter,
+                  onChanged: (String? newValue) {
+                    if (newValue != null) {
+                      provider.filterTransactions(newValue);
+                    }
+                  },
+                  items:
+                      <String>[
+                        "All",
+                        "Income",
+                        "Expenses",
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                ),
+              ],
+            ),
+            SizedBox(height: 5),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
                             children: [
-                              CircleAvatar(child: Image.asset(transaction['image'])),
-                              SizedBox(width: 20),
+                              CircleAvatar(
+                                backgroundImage: AssetImage('images/1.png'),
+                              ),
+                              SizedBox(width: 10),
                               Column(
                                 children: [
-                                  Text(
-                                    transaction["name"],
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height: 2),
-                                  Text(
-                                    transaction["date"],
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w100,
-                                    ),
-                                  ),
+                                  Text("Miradie"),
+                                  Text("25 jan 2025"),
                                 ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-
-                      Column(
-                        children: [
-                          Text(
-                            transaction["montant"].toString(),
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "\$ 118985",
+                              style: TextStyle(color: Colors.blue),
                             ),
+                            Text("22h 42"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage('images/1.png'),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text("Miradie"),
+                                  Text("25 jan 2025"),
+                                ],
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 2),
-                          Text(
-                            transaction["heure"].toString(),
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w100,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "\$ 118985",
+                              style: TextStyle(color: Colors.blue),
                             ),
+                            Text("22h 42"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage('images/1.png'),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text("Miradie"),
+                                  Text("25 jan 2025"),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  );
-                },
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "-\$ 985",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            Text("22h 42"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage('images/1.png'),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text("Miradie"),
+                                  Text("25 jan 2025"),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "\$ 585",
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            Text("22h 42"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage('images/1.png'),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text("Miradie"),
+                                  Text("25 jan 2025"),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "-\$5189",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            Text("22h 42"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: AssetImage('images/1.png'),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text("Miradie"),
+                                  Text("25 jan 2025"),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              " -\$118985",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            Text("22h 42"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
+
+              // TransactionList(),
             ),
           ],
         ),
@@ -328,5 +417,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-
-

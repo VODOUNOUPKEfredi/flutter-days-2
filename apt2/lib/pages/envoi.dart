@@ -25,7 +25,7 @@ class _EnvoiPageState extends State<EnvoiPage> {
           children: [
             CircleAvatar(
               radius: 20,
-              backgroundImage: AssetImage('Images/1.png'),
+              backgroundImage: AssetImage('images/1.png'),
             ),
             SizedBox(width: 10),
             Text(
@@ -116,10 +116,10 @@ SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(backgroundImage: AssetImage('Images/1.png')),
-                   CircleAvatar(backgroundImage: AssetImage('Images/1.png')),
-                    CircleAvatar(backgroundImage: AssetImage('Images/1.png')),
-                     CircleAvatar(backgroundImage: AssetImage('Images/1.png')),
+                  CircleAvatar(backgroundImage: AssetImage('images/1.png')),
+                   CircleAvatar(backgroundImage: AssetImage('images/1.png')),
+                    CircleAvatar(backgroundImage: AssetImage('images/1.png')),
+                     CircleAvatar(backgroundImage: AssetImage('images/1.png')),
                 ],
               ),
               SizedBox(height: 20),
