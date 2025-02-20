@@ -3,11 +3,12 @@
 //import 'package:apt2/pages/home.dart';
 import 'package:apt2/pages/envoi.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //import 'package:apt2/pages/provider/transaction_provider.dart';
 //import 'package:apt2/pages/models/transaction.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:apt2/pages/widget/transaction_list.dart';
+import 'package:apt2/pages/widget/transactions_list.dart';
 
 void main() {
   runApp(
@@ -172,21 +173,45 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EnvoiPage()),
-                    );
-                  },
-                  child: Text("Send"),
-                ),
-                ElevatedButton(onPressed: () {}, child: Text("Receive")),
-                ElevatedButton(onPressed: () {}, child: Text("Rewards")),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EnvoiPage()),
+                      );
+                    },
+
+                    icon: FaIcon(FontAwesomeIcons.moneyBill),
+                    label: Text("Send"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.withAlpha(50),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.moneyBill),
+                    label: Text("Receive"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.withAlpha(50),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.moneyBill),
+                    label: Text("Rewards"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.withAlpha(50),
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 20),
 
@@ -219,203 +244,205 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
             SizedBox(height: 5),
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('images/1.png'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text("Miradie"),
-                                  Text("25 jan 2025"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "\$ 118985",
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            Text("22h 42"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('images/1.png'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text("Miradie"),
-                                  Text("25 jan 2025"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "\$ 118985",
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            Text("22h 42"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('images/1.png'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text("Miradie"),
-                                  Text("25 jan 2025"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "-\$ 985",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                            Text("22h 42"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('images/1.png'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text("Miradie"),
-                                  Text("25 jan 2025"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "\$ 585",
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            Text("22h 42"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('images/1.png'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text("Miradie"),
-                                  Text("25 jan 2025"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "-\$5189",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                            Text("22h 42"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('images/1.png'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                children: [
-                                  Text("Miradie"),
-                                  Text("25 jan 2025"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              " -\$118985",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                            Text("22h 42"),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            // Expanded(
+            //   child: SingleChildScrollView(
+            //     scrollDirection: Axis.vertical,
+            //     child: Column(
+            //       children: [
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               child: Row(
+            //                 children: [
+            //                   CircleAvatar(
+            //                     backgroundImage: AssetImage('images/1.png'),
+            //                   ),
+            //                   SizedBox(width: 10),
+            //                   Column(
+            //                     children: [
+            //                       Text("Miradie"),
+            //                       Text("25 jan 2025",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Text(
+            //                   "\$ 118985",
+            //                   style: TextStyle(color: Colors.blue),
+            //                 ),
+            //                 Text("22h 42",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //         SizedBox(height: 10),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               child: Row(
+            //                 children: [
+            //                   CircleAvatar(
+            //                     backgroundImage: AssetImage('images/1.png'),
+            //                   ),
+            //                   SizedBox(width: 10),
+            //                   Column(
+            //                     children: [
+            //                       Text("Miradie"),
+            //                       Text("25 jan 2025",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Text(
+            //                   "\$ 118985",
+            //                   style: TextStyle(color: Colors.blue),
+            //                 ),
+            //                 Text("22h 42",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //         SizedBox(height: 10),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               child: Row(
+            //                 children: [
+            //                   CircleAvatar(
+            //                     backgroundImage: AssetImage('images/1.png'),
+            //                   ),
+            //                   SizedBox(width: 10),
+            //                   Column(
+            //                     children: [
+            //                       Text("Miradie"),
+            //                       Text("25 jan 2025",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Text(
+            //                   "-\$ 985",
+            //                   style: TextStyle(color: Colors.red),
+            //                 ),
+            //                 Text("22h 42",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //         SizedBox(height: 10),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               child: Row(
+            //                 children: [
+            //                   CircleAvatar(
+            //                     backgroundImage: AssetImage('images/1.png'),
+            //                   ),
+            //                   SizedBox(width: 10),
+            //                   Column(
+            //                     children: [
+            //                       Text("Miradie"),
+            //                       Text("25 jan 2025",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Text(
+            //                   "\$ 585",
+            //                   style: TextStyle(color: Colors.blue),
+            //                 ),
+            //                 Text("22h 42",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //         SizedBox(height: 10),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               child: Row(
+            //                 children: [
+            //                   CircleAvatar(
+            //                     backgroundImage: AssetImage('images/1.png'),
+            //                   ),
+            //                   SizedBox(width: 10),
+            //                   Column(
+            //                     children: [
+            //                       Text("Miradie"),
+            //                       Text("25 jan 2025",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Text(
+            //                   "-\$5189",
+            //                   style: TextStyle(color: Colors.red),
+            //                 ),
+            //                 Text("22h 42"),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //         SizedBox(height: 10),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             Container(
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                 children: [
+            //                   CircleAvatar(
+            //                     backgroundImage: AssetImage('images/1.png'),
+            //                   ),
+            //                   SizedBox(width: 10),
+            //                   Column(
+            //                     children: [
+            //                       Text("Miradie"),
+            //                       Text("25 jan 2025",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Text(
+            //                   " -\$118985",
+            //                   style: TextStyle(color: Colors.red),
+            //                 ),
+            //                 Text("22h 42",style: TextStyle(fontSize: 10,fontWeight: FontWeight.w100,)),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+            //   ),
 
-              // TransactionList(),
-            ),
+            //   // TransactionList(),
+            // ),
+
+            TransactionList(),
           ],
         ),
       ),

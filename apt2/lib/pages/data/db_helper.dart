@@ -1,49 +1,50 @@
-import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
-import 'package:intl/intl.dart';
+import 'package:apt2/pages/data/Authentification/user.dart'; // N'oublie pas d'importer ta classe User
 
 class DbHelper {
   static Database? _database;
-  // recuperation des donnees
+
+  // Initialiser la base de données SQLite
   Future<Database> get database async {
     if (_database != null) return _database!;
-
-    _database = await _iniDatabase();
-
+    _database = await _initDatabase();
     return _database!;
   }
 
-  //Initialiser la base de donnees
-  Future<Database> _iniDatabase() async {
-    String path = join(await getDatabasesPath(), 'transaction.db');
+  // Initialisation de la base de données
+  Future<Database> _initDatabase() async {
+    String path = join(await getDatabasesPath(), 'user_auth.db');
     return await openDatabase(
       path,
       version: 1,
       onCreate: (db, version) {
-        return db.execute("""CREATE TABLE transaction(
-   id INTEGER PRIMARY KEY AUTOINCREMENT,
-   amount INTEGER,
-   recipient TEXT,
-   date TEXT
-   )""");
+        return db.execute(
+          'CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)',
+        );
       },
     );
   }
-}
-//ajouter une transaction 
-Future <void> insertTransaction (int amount , String recipient) async{
-final db = await database;
-String currentDate =DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
-await db.insert("transaction",{
-  "amount":amount,
-  "recipient": recipient,
-  "date":currentDate,
-});
-}
-//recuperer toutes transactions
-Future<List<Map<String,dynamic>>> getTransaction() async{
-final db  = await database;
-return await db.query("transactions",orderBy:"date DESC");// trie par date(la plus recent)
+
+  // Inscrire un nouvel utilisateur
+  Future<void> insertUser(User user) async {
+    final db = await database;
+    await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  // Vérifier si l'utilisateur existe avec email et mot de passe
+  Future<User?> getUserByEmailPassword(String email, String password) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'users',
+      where: 'email = ? AND password = ?',
+      whereArgs: [email, password],
+    );
+
+    if (maps.isNotEmpty) {
+      return User.fromMap(maps.first);
+    } else {
+      return null; // Utilisateur non trouvé
+    }
+  }
 }
